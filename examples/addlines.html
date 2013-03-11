@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Lines</title>
+    <style type="text/css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart {
+            width: 90%;
+            height: 20%;
+        }
+
+        .viz-background {
+            fill: rgba(223, 223, 223, 1);
+        }
+
+        .viz-line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .one {
+            stroke: blue;
+        }
+
+        .two {
+            stroke: green;
+        }
+
+        .three {
+            stroke: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Lines</h1>
+<div class="chart"></div>
+<button class="addLine">Add Line</button>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="../src/core.js"></script>
+<script src="../src/utils/datageneration.js"></script>
+<script src="../src/utils/debounce.js"></script>
+<script src="../src/charts/cartesian.js"></script>
+<script src="../src/charts/resizable_cartesian.js"></script>
+<script src="../src/displays/line.js"></script>
+<script src="../src/displays/circle.js"></script>
+<script src="../src/displays/group.js"></script>
+<script>
+    $(function(){
+        var data = [
+            viz.utils.randomIntArray(50,0,10),
+            viz.utils.randomIntArray(50,0,20),
+            viz.utils.randomIntArray(50,0,30)
+        ];
+
+        var lineGroup = viz.displays.group([
+            viz.displays.line().class("one"),
+            viz.displays.line().class("two"),
+            viz.displays.line().class("three")
+        ]);
+
+        var chart = viz.charts.resizableCartesian()
+                .xDomain([0, 49])
+                .addDisplay(lineGroup);
+
+        d3.selectAll(".chart")
+                .datum(data)
+                .call(chart);
+
+        $(".addLine").on("click", function(e){
+            data.push(viz.utils.randomIntArray(50,0,viz.utils.randomInt(30,130)));
+
+            lineGroup.addDisplay(viz.displays.line());
+
+            chart.update(data);
+        });
+    });
+</script>
+</html>
