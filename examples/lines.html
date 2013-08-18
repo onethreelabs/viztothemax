@@ -38,12 +38,24 @@
         .three {
             stroke: red;
         }
+        h1{
+            margin-left: 20px;
+        }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
-<h1>Lines</h1>
+<h1>A Set of Lines In Resizable Cartesian Chart</h1>
 <div class="chart"></div>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
@@ -53,7 +65,13 @@
 <script src="../src/displays/line.js"></script>
 <script src="../src/displays/circle.js"></script>
 <script src="../src/displays/group.js"></script>
-<script>
+<script id="example">
+    /*
+
+    Given an array of data sets wit the same length,
+    draw them using a resizableCartesian chart.
+
+     */
     var data = [
         viz.utils.randomIntArray(50,0,10),
         viz.utils.randomIntArray(50,0,20),
@@ -75,5 +93,11 @@
             .datum(data)
             .call(chart);
 
+</script>
+<script>
+    $(function(){
+       $('.example code').html($('#example').text());
+        Prism.highlightAll();
+    });
 </script>
 </html>

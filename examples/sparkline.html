@@ -38,7 +38,19 @@
             stroke: steelblue;
             stroke-width: 2px;
         }
+        p{
+            padding: 10px;;
+        }
+        h1{
+            margin-left: 20px;
+        }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
 <h1>Single Line (ala sparkline)</h1>
@@ -63,87 +75,28 @@
     back into the light.
     We can climb out of hell.
     One inch, at a time.
-
-    Now I can't do it for you.
-    I'm too old.
-    I look around and I see these young faces
-    and I think
-    I mean
-    I made every wrong choice a middle age man could make.
-    I uh....
-    I pissed away all my money
-    believe it or not.
-    I chased off
-    anyone who has ever loved me.
-    And lately,
-    I can't even stand the face I see in the mirror.
-
-    You know when you get old in life
-    things get taken from you.
-    That's, that's part of life.
-    But,
-    you only learn that when you start losing stuff.
-    You find out that life is just a game of inches.
-    So is football.
-    Because in either game
-    life or football
-    the margin for error is so small.
-    I mean
-    one half step too late or to early
-    you don't quite make it.
-    One half second too slow or too fast
-    and you don't quite catch it.
-    The inches we need are everywhere around us.
-    They are in ever break of the game
-    every minute, every second.
-
-    On this team, we fight for that inch
-    On this team, we tear ourselves, and everyone around us
-    to pieces for that inch.
-    We CLAW with our finger nails for that inch.
-    Cause we know
-    when we add up all those inches
-    that's going to make the fucking difference
-    between WINNING and LOSING
-    between LIVING and DYING.
-
-    I'll tell you this
-    in any fight
-    it is the guy who is willing to die
-    who is going to win that inch.
-    And I know
-    if I am going to have any life anymore
-    it is because, I am still willing to fight, and die for that inch
-    because that is what LIVING is.
-    The six inches in front of your face.
-
-    Now I can't make you do it.
-    You gotta look at the guy next to you.
-    Look into his eyes.
-    Now I think you are going to see a guy who will go that inch with you.
-    You are going to see a guy
-    who will sacrifice himself for this team
-    because he knows when it comes down to it,
-    you are gonna do the same thing for him.
-
-    That's a team, gentlemen
-    and either we heal now, as a team,
-    or we will die as individuals.
-    That's football guys.
-    That's all it is.
-    Now, whattaya gonna do?</p>
+</p>
 <div class="chart bigchart"></div>
 <div class="label">Larger view of sparkline.</div>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
 <script src="../src/utils/debounce.js"></script>
 <script src="../src/charts/cartesian.js"></script>
 <script src="../src/charts/resizable_cartesian.js"></script>
 <script src="../src/displays/line.js"></script>
-<script>
+<script id="example">
+    /*
 
+    Drawing a sparkline is just drawing a cartesian chart
+    with some added margin to make it look right within
+    the sentance.
+
+     */
     var data = viz.utils.randomIntArray(20,0,20);
 
     var chart = viz.charts.cartesian()
@@ -154,5 +107,11 @@
             .datum(data)
             .call(chart);
 
+</script>
+<script>
+    $(function(){
+        $('.example code').html($('#example').text());
+        Prism.highlightAll();
+    });
 </script>
 </html>

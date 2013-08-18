@@ -20,6 +20,9 @@
             height: 20%;
         }
 
+        .chart.simple {
+            width: 70%;
+        }
         .viz-background {
             fill: rgba(223, 223, 223, 1);
         }
@@ -28,24 +31,41 @@
             fill: none;
             stroke: steelblue;
             stroke-width: 2px;
+        }h1{
+             margin-left: 20px;
+         }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
         }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
-<h1>Cartesian Charts</h1>
+<h1>Cartesian Charts, Resizable and Fixed Size</h1>
 <div class="chart simple"></div>
 <div class="label">viz.charts.cartesian() [fixed size]</div>
 <div class="chart resize"></div>
 <div class="label">viz.charts.resizableCartesian() [redraw on resize]</div>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
 <script src="../src/utils/debounce.js"></script>
 <script src="../src/charts/cartesian.js"></script>
 <script src="../src/charts/resizable_cartesian.js"></script>
 <script src="../src/displays/line.js"></script>
-<script>
+<script id="example">
+    /*
+
+    Sometimes you need to specify a charts size and
+    sometimes you want it be relative to the window size.
+
+     */
     var data = viz.utils.randomIntArray(50,0,20);
     var chart = viz.charts.cartesian()
             .addDisplay(viz.displays.line());
@@ -61,5 +81,11 @@
             .datum(data)
             .call(chartResize);
 
+</script>
+<script>
+    $(function(){
+        $('.example code').html($('#example').text());
+        Prism.highlightAll();
+    });
 </script>
 </html>

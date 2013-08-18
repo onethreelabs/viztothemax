@@ -27,13 +27,25 @@
             stroke: steelblue;
             stroke-width: 2px;
         }
+        h1{
+            margin-left: 20px;
+        }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
-<h1>Line with Joints</h1>
+<h1>Line with Joints - Multiple Display Types</h1>
 <div class="chart"></div>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
 <script src="../src/utils/debounce.js"></script>
@@ -41,7 +53,15 @@
 <script src="../src/charts/resizable_cartesian.js"></script>
 <script src="../src/displays/line.js"></script>
 <script src="../src/displays/circle.js"></script>
-<script>
+<script id="example">
+    /*
+
+    Creating a "line with joints" is done by adding
+    a circle display with a radius to the display.
+    Each item added to the display will use the same
+    data set.
+
+     */
     var data = viz.utils.randomIntArray(50,0,20);
 
     var chart = viz.charts.resizableCartesian()
@@ -52,5 +72,11 @@
             .datum(data)
             .call(chart);
 
+</script>
+<script>
+    $(function(){
+        $('.example code').html($('#example').text());
+        Prism.highlightAll();
+    });
 </script>
 </html>

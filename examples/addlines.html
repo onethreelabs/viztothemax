@@ -35,15 +35,26 @@
         .three {
             stroke: red;
         }
+        h1{
+            margin-left: 20px;
+        }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
-<h1>Add Lines</h1>
+<h1>Adding Lines to Existing Chart</h1>
 <div class="chart"></div>
 <button class="addLine">Add Line</button>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
 <script src="../src/utils/debounce.js"></script>
@@ -52,7 +63,13 @@
 <script src="../src/displays/line.js"></script>
 <script src="../src/displays/circle.js"></script>
 <script src="../src/displays/group.js"></script>
-<script>
+<script id="example">
+    /*
+
+    As a new data set arrives add it to the display
+    and update the chart.
+
+     */
     $(function(){
         var data = [
             viz.utils.randomIntArray(50,0,10),
@@ -81,6 +98,12 @@
 
             chart.update(data);
         });
+    });
+</script>
+<script>
+    $(function(){
+        $('.example code').html($('#example').text());
+        Prism.highlightAll();
     });
 </script>
 </html>

@@ -30,7 +30,16 @@
             stroke: steelblue;
             stroke-width: 2px;
         }
+        h1{
+            margin-left: 20px;
+        }
+        .example {
+            width: 80%;
+            font-size: .8em;
+            margin-left: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="lib/prism.css" />
 </head>
 <body>
 <h1>Data vs. Datum</h1>
@@ -38,20 +47,23 @@
 <div class="chart data"></div>
 <div class="chart data"></div>
 <div class="chart data"></div>
-<div class="label">Data - an array of arrays of data for each chart.</div>
+<div class="label">Data - draw a chart for each data set in array.</div>
 <div class="chart datum"></div>
 <div class="chart datum"></div>
 <div class="chart datum"></div>
-<div class="label">Datum - one array of data for each chart.</div>
+<div class="label">Datum - use the same data set for each display.</div>
+<div class="example"><pre><code class="language-javascript"></code></pre></div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../lib/d3.v3/d3.v3.min.js"></script>
+<script src="lib/prism.js" data-manual></script>
 <script src="../src/core.js"></script>
 <script src="../src/utils/datageneration.js"></script>
 <script src="../src/utils/debounce.js"></script>
 <script src="../src/charts/cartesian.js"></script>
 <script src="../src/charts/resizable_cartesian.js"></script>
 <script src="../src/displays/line.js"></script>
-<script>
+<script id="example">
     var data = [viz.utils.randomIntArray(50,0,20),
                 viz.utils.randomIntArray(30,0,20),
                 viz.utils.randomIntArray(10,0,20)];
@@ -71,5 +83,11 @@
             .datum(datum)
             .call(chartDatum);
 
+</script>
+<script>
+    $(function(){
+        $('.example code').html($('#example').text());
+        Prism.highlightAll();
+    });
 </script>
 </html>
